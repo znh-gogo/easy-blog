@@ -1,5 +1,6 @@
 <template>
   <div class="page-article">
+    <sidebar class="top-tar"></sidebar>
     <div class="article-list" v-if="model">
       <div class="article-box" v-for="(item, n) in model" :key="n">
         <div class="article-item">
@@ -29,7 +30,7 @@
       </div>
     </div>
 
-    <sidebar></sidebar>
+    <sidebar class="right-tar"></sidebar>
   </div>
 </template>
 
@@ -80,6 +81,9 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  .top-tar{
+    display: none;
+  }
   .article-list {
     background: #fff;
     min-width: 80%;
@@ -132,4 +136,16 @@ export default {
     }
   }
 }
+  @media screen and (max-width: 900px){
+    .page-article{
+      display: block;
+      .top-tar{
+        display: block
+      }
+    }
+    .right-tar{
+      display: none
+    }
+    
+  }
 </style>

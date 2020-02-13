@@ -171,12 +171,12 @@ const router = new Router({
 // console.log(router)
 
 router.beforeEach((to,from,next)=>{
-  // if(!to.meta.isPublic && !sessionStorage.token){
-  //   return next('/login')
-  // }
+  if(!to.meta.isPublic && !sessionStorage.token){
+    return next('/login')
+  }
 // console.log(123)
   
-  window.document.title = '通用服务平台-'+to.meta.name || '通用服务平台'
+  window.document.title = '简易博客服务后台-'+to.meta.name || '简易博客服务后台'
   next()
 })
 

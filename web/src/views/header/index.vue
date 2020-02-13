@@ -7,18 +7,46 @@
         </a>
       </div>
       <div>
-        <router-link to="/" tag="a" @click="active=1" :class="{active:active===i}">文章</router-link>
+        <router-link to="/" tag="a" @click="active=1" :class="{active:active===1}">文章</router-link>
       </div>
       <div>
-        <router-link to="/about" tag="a" @click="active=2" :class="{active:active===i}">关于博客</router-link>
+        <router-link to="/about" tag="a" @click="active=2" :class="{active:active===2}">关于博客</router-link>
       </div>
     </div>
-    <div class="search">
-      <input type="text" class="ivu-input" placeholder="搜索文章" v-model="model.id" />
-      <button @click="fetch()">
-        <span class="iconfont icon-sousuo"></span>
-      </button>
+    <div class="search search1">
+      <!-- <el-form :inline="true" :model="formInline" class="demo-form-inline"> -->
+          <!-- <el-form-item> -->
+            <el-input placeholder="搜索文章" v-model="model.id" style="margin-right:1rem;"></el-input>
+          <!-- </el-form-item> -->
+          <!-- <el-form-item> -->
+            <el-button @click="fetch()" icon="el-icon-search" plain></el-button>
+          <!-- </el-form-item> -->
+        <!-- </el-form> -->
     </div>
+    
+    <el-popover
+      class="searchBtn"
+      placement="bottom"
+      width="350"
+      trigger="click">
+      <div class="searchBtn">
+        <!-- <input type="text" class="ivu-input" placeholder="搜索文章" v-model="model.id" /> -->
+        <el-form :inline="true" class="demo-form-inline">
+          <el-form-item>
+            <el-input placeholder="搜索文章" v-model="model.id"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="fetch()" icon="el-icon-search" plain></el-button>
+          </el-form-item>
+        </el-form>
+
+        <!-- <button @click="fetch()">
+          <span class="iconfont icon-sousuo"></span>
+        </button> -->
+      </div>
+      <!-- <el-button slot="reference">click 激活</el-button> -->
+      <el-button slot="reference" class="searchBtn" size="mini" icon="el-icon-search" plain>搜索</el-button>
+    </el-popover>
   </div>
 </template>
 
@@ -43,6 +71,7 @@ export default {
   width: 70%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   .logo {
     img {
       width: 12rem; /* 90/12 */
@@ -65,25 +94,27 @@ export default {
     }
   }
   .search {
-    .ivu-input {
-      width: 16.666667rem; /* 200/12 */
-      border: 1px solid #dcdee2;
-      border-radius: 4px;
-      padding: 4px 7px;
-      font-size: 1.166667rem /* 14/12 */;
-      line-height: 1.5rem;
-      margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  .searchBtn{
+      display: none;
+      
     }
-    input::placeholder {
-      color: #c5c8ce;
+  @media screen and (max-width: 900px){
+    .search1{
+      display: none;
     }
-    button {
-      padding: 6px 9px;
-      background: #fff;
-      border: 1px solid #dcdee2;
-      border-radius: 5px;
-      font-weight: 600;
+    .searchBtn{
+      display: block
     }
+    
+    .logo {
+      display: none;
+    // img {
+    //   width: 8rem; /* 90/12 */
+    // }
+  }
   }
 }
 </style>

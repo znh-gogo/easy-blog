@@ -2,6 +2,7 @@
   <div class="page-deatil" v-if="model">
     <div class="article-deatil">
       <mavon-editor
+        class="info"
         v-model="model.body"
         :ishljs="true"
         :defaultOpen="'preview'"
@@ -58,6 +59,14 @@ export default {
     // flex: 1;
     margin-right: 1.916667rem /* 23/12 */;
     border-radius: 15px;
+    overflow: hidden;
+    .info{
+      width: 100%;
+      // overflow: hidden;
+    }
+    .v-note-wrapper{
+      min-width: 0;
+    }
     img {
       width: 50%;
       height: auto;
